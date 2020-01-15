@@ -7,12 +7,19 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
     data() {
         return {
             title: '',
             body: ''
         }
+    },
+    computed: {
+        ...mapState({
+            posts: state => state.post.posts
+        })
     },
     methods: {
         onSubmit() {
@@ -21,10 +28,11 @@ export default {
                     id: Date.now(),
                     title: this.title,
                     body: this.body
-                }
-                this.$emit('add-post', newPost)
-                this.title = ''
-                this.body = ''
+                };
+                // this.$emit('add-post', newPost)
+                this.title = '';
+                this.body = '';
+                this.$store.dispatch("post/addPost", newPost)
             }
         }
     }
