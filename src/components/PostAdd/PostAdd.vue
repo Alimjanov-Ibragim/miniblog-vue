@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="onSubmit">
-        <input type="text" v-model="title">
-        <textarea v-model="body"></textarea>
+        <input type="text" v-model="post.title">
+        <textarea v-model="post.body"></textarea>
         <button type="submit">Create</button>
     </form>
 </template>
@@ -12,8 +12,7 @@ import { mapState } from "vuex";
 export default {
     data() {
         return {
-            title: '',
-            body: ''
+            post: {}
         }
     },
     computed: {
@@ -23,15 +22,13 @@ export default {
     },
     methods: {
         onSubmit() {
-            if (this.title.trim() || this.body.trim()) {
+            if (this.post.title.trim() || this.post.body.trim()) {
                 const newPost = {
                     id: Date.now(),
-                    title: this.title,
-                    body: this.body
+                    title: this.post.title,
+                    body: this.post.body
                 };
-                // this.$emit('add-post', newPost)
-                this.title = '';
-                this.body = '';
+                this.post = {};
                 this.$store.dispatch("post/addPost", newPost)
             }
         }

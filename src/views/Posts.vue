@@ -20,12 +20,14 @@ export default {
     }
   },
   mounted() {
-    fetch('https://jsonplaceholder.typicode.com/posts?_limit=12')
+    if(!this.posts.length) {
+      fetch('https://jsonplaceholder.typicode.com/posts?_limit=12')
         .then(response => response.json())
         .then(json => {
-            // this.posts = json
+          // this.posts = json
           this.$store.dispatch("post/setPosts", json);
         })
+    }
   },
   computed: {
     ...mapState({
