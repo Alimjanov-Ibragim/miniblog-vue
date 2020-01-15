@@ -15,7 +15,7 @@ export default {
   name: 'Posts',
   data() {
     return {
-     posts: []   
+     posts: []
     }
   },
   mounted() {
