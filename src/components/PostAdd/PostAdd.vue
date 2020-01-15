@@ -21,10 +21,10 @@ export default {
                     id: Date.now(),
                     title: this.title,
                     body: this.body
-                }
-                this.$emit('add-post', newPost)
-                this.title = ''
-                this.body = ''
+                };
+                // this.$emit('add-post', newPost)
+                this.title = '';
+                this.body = '';
             }
         }
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="Create">
     <h1>This is a createa page</h1>
-    <PostAdd 
+    <PostAdd
       @add-post="addPost"
     />
   </div>
@@ -15,12 +15,12 @@ export default {
   name: 'create',
   methods: {
     addPost(post) {
-      this.$emit('add-post', post)
+      // this.$emit('add-post', post)
     }
   },
   computed: {
     ...mapState({
-      post: state => state.post.data
+      posts: state => state.post.posts
     })
   },
   components: {

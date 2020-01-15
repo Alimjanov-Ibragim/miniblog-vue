@@ -1,7 +1,7 @@
 <template>
   <div class="Posts">
     <h2>Posts</h2>
-    <PostList 
+    <PostList
         v-bind:posts="posts"
         @remove-post="removePost"
     />
@@ -9,25 +9,33 @@
 </template>
 
 <script>
-import PostList from '@/components/PostList/PostList'
+import PostList from "@/components/PostList/PostList";
+import { mapState } from "vuex";
 
 export default {
   name: 'Posts',
   data() {
     return {
-     posts: []   
+     // posts: []
     }
   },
   mounted() {
     fetch('https://jsonplaceholder.typicode.com/posts?_limit=9')
         .then(response => response.json())
         .then(json => {
-            this.posts = json
+            // this.posts = json
+          this.$store.dispatch("post/setPosts", json);
         })
+  },
+  computed: {
+    ...mapState({
+      posts: state => state.post.posts
+    })
   },
   methods: {
     removePost(id) {
-      this.posts = this.posts.filter(p => p.id !== id)
+      // this.posts = this.posts.filter(p => p.id !== id)
+      this.$store.dispatch("post/removePost", id);
     }
   },
   components: {
