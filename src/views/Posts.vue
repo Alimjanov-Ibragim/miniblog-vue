@@ -20,7 +20,7 @@ export default {
     }
   },
   mounted() {
-    fetch('https://jsonplaceholder.typicode.com/posts?_limit=12')
+    fetch('https://jsonplaceholder.typicode.com/posts?_limit=3')
         .then(response => response.json())
         .then(json => {
             // this.posts = json
